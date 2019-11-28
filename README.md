@@ -1,9 +1,6 @@
-# Serenity/JS Cucumber Protractor Template
+# Serenity/JS TodoMVC Demo
 
-[![Build Status](https://travis-ci.org/serenity-js/serenity-js-cucumber-protractor-template.svg?branch=master)](https://travis-ci.org/serenity-js/serenity-js-cucumber-protractor-template)
-
-Use this [template repository](https://help.github.com/en/articles/creating-a-repository-from-a-template)
-to get started with acceptance testing your web applications using Serenity/JS, Cucumber and Protractor.
+[![Build Status](https://travis-ci.org/serenity-js/todomvc-demo.svg?branch=master)](https://travis-ci.org/serenity-js/todomvc-demo)
 
 **NOTE:** This repository uses an alpha version of Serenity/JS, and while its code is stable and unlikely to undergo
 any major changes before the official release, the documentation hasn't been published yet.
