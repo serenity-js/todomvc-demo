@@ -1,11 +1,13 @@
 const
     { ArtifactArchiver } = require('@serenity-js/core'),
-    { Photographer, TakePhotosOfInteractions } = require('@serenity-js/protractor'),
+    { ConsoleReporter } = require('@serenity-js/console-reporter'),
+    { Photographer, TakePhotosOfFailures, TakePhotosOfInteractions } = require('@serenity-js/protractor'),
     { SerenityBDDReporter } = require('@serenity-js/serenity-bdd'),
-    isCI = require('is-ci');
+    isCI = require('is-ci'),
+    path = require('path');
 
 exports.config = {
-    baseUrl: 'https://juliemr.github.io/',
+    baseUrl: 'http://localhost:3000',
 
     chromeDriver: require(`chromedriver/lib/chromedriver`).path,
 
@@ -19,13 +21,16 @@ exports.config = {
     framework:      'custom',
     frameworkPath:  require.resolve('@serenity-js/protractor/adapter'),
 
-    specs: [ 'features/**/*.feature' ],
+    // specs: [ 'features/**/*.feature' ],
+    specs: [ './spec/*.spec.ts', ],
 
     serenity: {
-        runner: 'cucumber',
+        // runner: 'cucumber',
+        runner: 'jasmine',
         crew: [
             ArtifactArchiver.storingArtifactsAt('./target/site/serenity'),
-            Photographer.whoWill(TakePhotosOfInteractions),     // or Photographer.whoWill(TakePhotosOfFailures),
+            ConsoleReporter.forDarkTerminals(),
+            Photographer.whoWill(TakePhotosOfFailures),     // or Photographer.whoWill(TakePhotosOfInteractions),
             new SerenityBDDReporter(),
         ]
     },
@@ -35,15 +40,37 @@ exports.config = {
      * uncomment the below onPrepare section,
      * which disables Angular-specific test synchronisation.
      */
-    // onPrepare: function() {
-    //     browser.waitForAngularEnabled(false);
-    // },
+    onPrepare: function() {
+        browser.waitForAngularEnabled(false);
+    },
 
+    /**
+     * Cucumber-specific configuration,
+     * which will be used if you configure serenity.runner to 'cucumber'
+     */
     cucumberOpts: {
-        require: [ 'features/**/*.ts', ],
-        'require-module':   [ 'ts-node/register'],
+        require: [
+            'features/**/*.ts',
+        ],
+        'require-module': [
+            'ts-node/register'
+        ],
         tags:    ['~@wip'],
         strict:  false,
+    },
+
+    /**
+     * Jasmine-specific configuration,
+     * which will be used if you configure serenity.runner to 'jasmine'
+     */
+    jasmineNodeOpts: {
+        requires: [
+            'ts-node/register',
+            path.resolve(__dirname, 'node_modules/@serenity-js/jasmine'),
+        ],
+        helpers: [
+            'spec/support/*.ts'
+        ]
     },
 
     capabilities: {
@@ -63,6 +90,7 @@ exports.config = {
                 '--log-level=3',
                 '--disable-gpu',
                 '--window-size=1920,1080',
+                // '--headless',
             ].concat(isCI ? ['--headless'] : [])    // run in headless mode on the CI server
         }
     }
