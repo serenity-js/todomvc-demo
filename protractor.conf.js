@@ -21,12 +21,12 @@ exports.config = {
     framework:      'custom',
     frameworkPath:  require.resolve('@serenity-js/protractor/adapter'),
 
-    specs: [ 'features/**/*.feature' ],
-    // specs: [ './spec/*.spec.ts', ],
+    // specs: [ 'features/**/*.feature' ],
+    specs: [ './spec/*.spec.ts', ],
 
     serenity: {
-        runner: 'cucumber',
-        // runner: 'jasmine',
+        // runner: 'cucumber',
+        runner: 'jasmine',
         crew: [
             ArtifactArchiver.storingArtifactsAt('./target/site/serenity'),
             ConsoleReporter.forDarkTerminals(),

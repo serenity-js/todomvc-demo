@@ -1,11 +1,11 @@
-import { serenity, WithStage } from '@serenity-js/core';
+import { actorCalled, actorInTheSpotlight, engage, serenity, WithStage } from '@serenity-js/core';
 import { defineParameterType, setDefaultTimeout, setWorldConstructor } from 'cucumber';
 import { Actors } from '../../src';
 
 setDefaultTimeout(15000);
 
-setWorldConstructor(function (this: WithStage, { parameters }) {
-    this.stage = serenity.callToStageFor(new Actors());
+setWorldConstructor(function ({ parameters }) {
+    engage(new Actors());
 });
 
 defineParameterType({
@@ -18,16 +18,16 @@ defineParameterType({
 
 defineParameterType({
     regexp: /[A-Z][a-z]+/,
-    transformer(this: WithStage, name: string) {
-        return this.stage.theActorCalled(name);
+    transformer(name: string) {
+        return actorCalled(name);
     },
     name: 'actor',
 });
 
 defineParameterType({
     regexp: /he|she|they|his|her|their/,
-    transformer(this: WithStage) {
-        return this.stage.theActorInTheSpotlight();
+    transformer() {
+        return actorInTheSpotlight();
     },
     name: 'pronoun',
 });

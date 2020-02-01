@@ -2,7 +2,7 @@ import { browser, by, element, protractor } from 'protractor';
 
 describe('Todo List App', function () {
 
-    fit('allows for the list to show active items only (test script)', async function () {
+    it('allows for the list to show active items only (test script)', async function () {
         await browser.get('/');
 
         await protractor.browser.wait(
@@ -21,10 +21,9 @@ describe('Todo List App', function () {
         await element(by.css('.new-todo')).sendKeys('Write some code');
         await element(by.css('.new-todo')).sendKeys(protractor.Key.ENTER);
 
-        await element(
-            by.xpath(`//li[*[@class='view' and contains(.,'Write some code')]]//input[contains(@class,'toggle')]`),
-        )
-            .click();
+        await element(by.xpath(
+            `//li[*[@class='view' and contains(.,'Write some code')]]//input[contains(@class,'toggle')]`,
+        )).click();
 
         await element(by.linkText(`Active`))
             .click();

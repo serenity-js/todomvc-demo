@@ -1,6 +1,6 @@
-import { serenity } from '@serenity-js/core';
+import { engage } from '@serenity-js/core';
 import { Actors } from '../../src';
 
 beforeEach(function () {
-    this.stage = serenity.callToStageFor(new Actors());
+    this.stage = engage(new Actors());
 });
