@@ -55,7 +55,7 @@
     "@types/jasmine": "^3.5.10",
     "@types/node": "^12.12.37",
     "axios": "^0.19.2",
-    "chromedriver": "^80.0.1",
+    "chromedriver": "^81.0.0",
     "cucumber": "^6.0.5",
     "jasmine": "^3.4.0",
     "is-ci": "^2.0.0",
