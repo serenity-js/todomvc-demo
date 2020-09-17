@@ -1,5 +1,5 @@
 import { endsWith, Ensure, equals } from '@serenity-js/assertions';
-import { Task, WithStage } from '@serenity-js/core';
+import { actorCalled, actorInTheSpotlight, Task, WithStage } from '@serenity-js/core';
 import {
     Click,
     Enter,
@@ -17,7 +17,7 @@ import { by, ElementArrayFinder, ElementFinder, protractor } from 'protractor';
 
 describe('Todo List App', () => {
 
-    // Screenplay-style lightweight page objects
+    // Screenplay-style Lean Page Objects
 
     class TodoList {
         static newTodoInput  = Target.the('"What needs to be done?" input box')
@@ -63,13 +63,13 @@ describe('Todo List App', () => {
         Ensure only Play guitar and Read a book are present
      */
     it('allows for the list to show active items only (Screenplay Pattern)', function (this: WithStage) {
-        return this.stage.theActorCalled('Jasmine').attemptsTo(
+        return actorCalled('Jasmine').attemptsTo(
             // todo: implement with audience participation ;-)
         );
     });
 
     afterEach(function (this: WithStage) {
-        this.stage.theActorInTheSpotlight().attemptsTo(
+        actorInTheSpotlight().attemptsTo(
             ExecuteScript.sync('window.localStorage.clear()'),
         );
     });
