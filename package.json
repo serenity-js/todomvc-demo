@@ -57,7 +57,7 @@
     "axios": "^0.20.0",
     "chromedriver": "^86.0.0",
     "cucumber": "^6.0.5",
-    "jasmine": "^3.6.1",
+    "jasmine": "^3.6.2",
     "is-ci": "^2.0.0",
     "npm-failsafe": "^0.4.1",
     "protractor": "^7.0.0",
