@@ -1,6 +1,6 @@
 # Serenity/JS TodoMVC Demo
 
-[![Build Status](https://travis-ci.org/serenity-js/todomvc-demo.svg?branch=master)](https://travis-ci.org/serenity-js/todomvc-demo)
+[![Build Status](https://github.com/serenity-js/todomvc-demo/workflows/build/badge.svg)](https://github.com/serenity-js/todomvc-demo/actions/)
 
 ## Prerequisites
 
